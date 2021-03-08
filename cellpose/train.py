@@ -252,15 +252,10 @@ def main():
 
             # initialize model
             if args.unet:
-                model = core.UnetModel(device=device,
-                                       pretrained_model=cpmodel_path,
-                                       diam_mean=szmean,
-                                       residual_on=args.residual_on,
-                                       style_on=args.style_on,
-                                       concatenation=args.concatenation,
-                                       nclasses=args.nclasses)
+                pass
             else:
                 model = models.CellposeModel(device=device,
+                                             gpu=args.use_gpu,
                                              torch=(not args.mxnet),
                                              pretrained_model=cpmodel_path,
                                              diam_mean=szmean,
@@ -278,7 +273,9 @@ def main():
                                            learning_rate=args.learning_rate,
                                            channels=channels,
                                            save_path=os.path.realpath(
-                                               args.dir), rescale=rescale,
+                                               args.dir),
+                                           save_every=1,
+                                           rescale=rescale,
                                            n_epochs=args.n_epochs,
                                            batch_size=args.batch_size)
                 model.pretrained_model = cpmodel_path
