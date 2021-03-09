@@ -274,7 +274,7 @@ def main():
                                            channels=channels,
                                            save_path=os.path.realpath(
                                                args.dir),
-                                           save_every=1,
+                                           save_every=10,
                                            rescale=rescale,
                                            n_epochs=args.n_epochs,
                                            batch_size=args.batch_size)
